@@ -1,34 +1,36 @@
 @charset "utf-8";
+@mixin button_style {
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+}
 
-.edit-list {
+.edit-task {
   width: 1000px;
   margin: 0 auto;
 }
 
-.edit-list-form {
+.edit-task-form {
   color: #555555;
 }
 
-.edit-list-title {
+.edit-task-title,
+.edit-task-detail {
   width: 300px;
   margin-bottom: 25px;
 }
 
-.delete-list-button {
+.delete-task-button {
   color: #ff3333;
   border: solid 1px #ff3333;
-  width: 80px;
-  height: 40px;
   margin: 25px 5px;
-  border-radius: 5px;
+  @include button_style;
 }
 
-.edit-list-button {
+.edit-task-button {
   background-color: #242f9b;
   color: #ffffff;
-  width: 80px;
-  height: 40px;
-  border-radius: 5px;
+  @include button_style;
 }
 
 .error-message {
