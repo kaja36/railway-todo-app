@@ -18,7 +18,7 @@ export const NewTask = () => {
   const handleTitleChange = (e) => setTitle(e.target.value)
   const handleDetailChange = (e) => setDetail(e.target.value)
   const handleSelectList = (id) => setSelectListId(id)
-  const handleDateChange = (e) => setLimit(e.target.value+"Z")
+  const handleLimitChange = (e) => {setLimit(e.target.value + ':00Z'); console.log(limit)}
   const onCreateTask = () => {
     const data = {
       title: title,
@@ -85,6 +85,11 @@ export const NewTask = () => {
             className="new-task-title"
           />
           <br />
+          <label>期限日時</label>
+          <br />
+          <input type="datetime-local" onChange={handleLimitChange} />
+          <br />
+          <br />
           <label>詳細</label>
           <br />
           <textarea
@@ -92,11 +97,6 @@ export const NewTask = () => {
             onChange={handleDetailChange}
             className="new-task-detail"
           />
-          <br />
-          <label>期限日時</label>
-          <br />
-          <input type="datetime-local" onChange={handleDateChange} step="1" />
-          <br />
           <br />
           <button
             type="button"
