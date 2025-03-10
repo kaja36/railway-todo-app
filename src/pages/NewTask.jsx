@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie'
 import axios from 'axios'
 import { url } from '../const'
 import { Header } from '../components/Header'
-import './newTask.css'
+import './newTask.scss'
 import { useHistory } from 'react-router-dom'
 
 export const NewTask = () => {
@@ -12,16 +12,19 @@ export const NewTask = () => {
   const [title, setTitle] = useState('')
   const [detail, setDetail] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const [limit, setLimit] = useState('')
   const [cookies] = useCookies()
   const history = useHistory()
   const handleTitleChange = (e) => setTitle(e.target.value)
   const handleDetailChange = (e) => setDetail(e.target.value)
   const handleSelectList = (id) => setSelectListId(id)
+  const handleLimitChange = (e) => {setLimit(e.target.value + ':00Z'); console.log(limit)}
   const onCreateTask = () => {
     const data = {
       title: title,
       detail: detail,
       done: false,
+      limit: limit,
     }
 
     axios
@@ -81,6 +84,11 @@ export const NewTask = () => {
             onChange={handleTitleChange}
             className="new-task-title"
           />
+          <br />
+          <label>期限日時</label>
+          <br />
+          <input type="datetime-local" onChange={handleLimitChange} />
+          <br />
           <br />
           <label>詳細</label>
           <br />

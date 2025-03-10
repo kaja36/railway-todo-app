@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie'
 import axios from 'axios'
 import { Header } from '../components/Header'
 import { url } from '../const'
-import './home.css'
+import './home.scss'
 
 export const Home = () => {
   const [isDoneDisplay, setIsDoneDisplay] = useState('todo') // todo->未完了 done->完了
@@ -125,6 +125,15 @@ export const Home = () => {
 // 表示するタスク
 const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props
+  function getTimesLeft(task){
+    const diff = new Date(task.limit).getTime() - (new Date().getTime()+(9*60*60*1000))
+    const second = Math.abs(Math.floor(diff/1000)%60)
+    const minute = Math.abs(Math.floor(diff/1000/60)%60)
+    const hour = Math.abs(Math.floor(diff/1000/60/60)%24)
+    const day = Math.abs(Math.floor(diff/1000/60/60/24)+ (diff<0?1:0))
+    return `${diff<0?'-':''}${day}日 ${hour}:${minute}:${second}`
+  }
+
   if (tasks === null) return <></>
 
   if (isDoneDisplay == 'done') {
@@ -140,9 +149,11 @@ const Tasks = (props) => {
                 to={`/lists/${selectListId}/tasks/${task.id}`}
                 className="task-item-link"
               >
-                {task.title}
+                タイトル：{task.title}
                 <br />
-                {task.done ? '完了' : '未完了'}
+                期限日時：{task.limit}
+                <br />
+                進捗：{task.done ? '完了' : '未完了'}
               </Link>
             </li>
           ))}
@@ -162,9 +173,13 @@ const Tasks = (props) => {
               to={`/lists/${selectListId}/tasks/${task.id}`}
               className="task-item-link"
             >
-              {task.title}
+              タイトル：{task.title}
               <br />
-              {task.done ? '完了' : '未完了'}
+              期限日時：{task.limit}
+              <br />
+              残り：{getTimesLeft(task)}
+              <br />
+              進捗：{task.done ? '完了' : '未完了'}
             </Link>
           </li>
         ))}
