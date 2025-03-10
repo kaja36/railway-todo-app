@@ -35,3 +35,15 @@
 .error-message {
   color: #ff3333;
 }
+
+@media screen and (max-width: 768px) {
+  .edit-list{
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .edit-list{
+    width: 300px;
+  }
+}

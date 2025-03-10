@@ -29,3 +29,9 @@
 .error-message {
   color: #ff3333;
 }
+
+@media screen and (max-width: 375px) {
+  .signup{
+    width: 300px;
+  }
+}

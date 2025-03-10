@@ -74,3 +74,19 @@
 .display-select {
   width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  .taskList{
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .taskList{
+    width: 300px;
+  }
+
+  .task-item{
+    height: 140px;
+  }
+}
